@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="pageTitle">Елена Филатова — Преподаватель & Frontend-разработчик</title>
+    <!-- Иконка сайта (фавиконка) во вкладке браузера -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <!-- GSAP библиотека для анимации интро -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="index.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Интро-анимация логотипа -->
+    <div id="introLogo" class="introLogo">
+        <img id="introLogoImg" src="images/logo-s.webp" alt="Logo" class="introLogoImg">
+        <div id="introName" class="introName">
+            <span class="white">Filatova</span>
+            <span class="violet">Elena</span>
+        </div>
+    </div>
+
+    <!-- Интерактивный фон из пузырьков -->
+    <div class="bubbles-bg" id="bubblesBg" aria-hidden="true"></div>
+
+    <div class="portfolio-card">
+        <!-- Кнопка переключения языка -->
+        <div class="lang-switch-wrapper">
+            <button id="langToggleBtn" class="lang-btn" onclick="toggleLanguage()">EN</button>
+        </div>
+
+        <!-- Шапка профиля -->
+        <header class="profile-header">
+            <!-- Логотип и брендовый текст слева -->
+            <div class="header-logo">
+                <img src="images/logo-s.webp" alt="Logo">
+                <span class="brand-text"></span>
+            </div>
+
+            <div class="avatar-wrapper">
+                <img src="images/portfolio_photo.png" alt="Елена Филатова" class="profile-avatar">
+            </div>
+            <h1>Елена Филатова</h1>
+            <p class="profile-tagline" data-i18n="profileTagline">Преподаватель английского языка & Frontend-разработчик</p>
+            
+            <!-- Кнопки CV -->
+            <div class="header-actions">
+                <a href="images/cv-ru.pdf" download target="_blank" class="cv-btn">
+                    <i class="fa-solid fa-file-arrow-down"></i> <span data-i18n="cvRu">CV (RU)</span>
+                </a>
+                <a href="images/cv-en.pdf" download target="_blank" class="cv-btn">
+                    <i class="fa-solid fa-file-arrow-down"></i> <span data-i18n="cvEn">CV (EN)</span>
+                </a>
+            </div>
+
+            <!-- Соцсети -->
+            <div class="social-icons header-socials">
+                <a href="https://t.me/elenafeela" target="_blank" rel="noreferrer" class="social-icon" title="Telegram">
+                    <i class="fa-brands fa-telegram"></i>
+                </a>
+                <a href="https://www.instagram.com/elena_feela_/" target="_blank" rel="noreferrer" class="social-icon" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=filatovae047@gmail.com" target="_blank" rel="noreferrer" class="social-icon" title="Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- Навигация -->
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="switchTab(event, 'about')" data-i18n="navAbout">О себе</button>
+            <button class="nav-btn" onclick="switchTab(event, 'skills')" data-i18n="navSkills">Навыки</button>
+            <button class="nav-btn" onclick="switchTab(event, 'experience')" data-i18n="navExperience">Опыт</button>
+            <button class="nav-btn" onclick="switchTab(event, 'certificates')" data-i18n="navCerts">Сертификаты</button>
+        </div>
+
+        <!-- Содержимое вкладок -->
+        <div class="content-body">
+            
+            <!-- О себе -->
+            <section id="about" class="tab-pane active">
+                <h2 data-i18n="aboutTitle">Обо мне</h2>
+                <p data-i18n="aboutText1">
+                   Преподаватель английского языка с высшим лингвистическим образованием(Казахский национальный педагогический университет имени Абая, факультет иностранных языков) 
+                   и дополнительной технической базой. Выпускница школы программирования CanSheCode, 
+                   что позволяет мне уверенно ориентироваться в цифровых технологиях, эффективно использовать онлайн/офлайн-инструменты и проводить интерактивные уроки. 
+                </p>
+            </section>
+
+            <!-- Навыки -->
+            <section id="skills" class="tab-pane">
+                <h2 data-i18n="skillsTitle">Навыки и стек</h2>
+                <div class="skills-grid">
+                    <div class="skill-box">
+                        <h3 data-i18n="skillTeachingTitle"><img src="images/chat-icon.gif" alt="Chat Icon" width="48" height="48"> Педагогическая деятельность</h3>
+                        <ul>
+                            <li data-i18n="st1">Обучаю детей и взрослых</li>
+                            <li data-i18n="st2">IT English, разговорный, грамматика</li>
+                            <li data-i18n="st3">Геймификация и интерактив</li>
+                        </ul>
+                    </div>
+                    <div class="skill-box">
+                        <h3 data-i18n="skillDevTitle"><img src="images/laptop-life.gif" alt="Laptop Icon" width="48" height="48"> IT и программирование</h3>
+                        <ul>
+                            <li data-i18n="sd1">JavaScript (Vanilla), React</li>
+                            <li data-i18n="sd2">HTML5, CSS3, FSD, RTK Query</li>
+                            <li data-i18n="sd3">Git, GitHub, VS Code, Netlify</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Опыт работы -->
+            <section id="experience" class="tab-pane">
+                <h2 data-i18n="expTitle">Опыт работы</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-date" data-i18n="expDate1">2016 — Настоящее время</span>
+                        <h3 data-i18n="expRole1">Частный преподаватель английского языка</h3>
+                        <p data-i18n="expDesc1">Обучение различных возрастных групп, индивидуальный подход и современные методики.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-date" data-i18n="expDate2">2022 — 2026</span>
+                        <h3 data-i18n="expRole2">Frontend Developer — AL TECH LABS LTD</h3>
+                        <p data-i18n="expDesc2">Разработка коммерческих веб-приложений, проектирование интерфейсов и оптимизация клиентской части.</p>
+                    </div>
+                </div>
+            </section>
+
+           <!-- Сертификаты -->
+            <section id="certificates" class="tab-pane">
+                <h2 data-i18n="certsTitle">Сертификаты и достижения</h2>
+                <div class="certs-grid">
+                    <div class="cert-card">
+                        <img src="images/cert14.jpg" alt="Certificate 13">
+                        <div class="cert-info">
+                            <h3>Disciplines and exams</h3>
+                            <p>Дисциплины и экзамены</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert15.jpg" alt="Certificate 13">
+                        <div class="cert-info">
+                            <h3>ADDENDUM TO DIPLOMA</h3>
+                            <p>Дополнение к диплому</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert16.jpg" alt="Certificate 13">
+                        <div class="cert-info">
+                            <h3>DIPLOMA</h3>
+                            <p>Диплом</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/nkt.jpg" alt="НКТ ">
+                        <div class="cert-info">
+                            <h3>НКТ 2022</h3>
+                            <p data-i18n="cert1Desc">Национальный квал.тест</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert.jpg" alt="Cambridge Assessment">
+                        <div class="cert-info">
+                            <h3>British Council</h3>
+                            <p>New Ways of teaching:Skills and CPD for Teachers</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert1.jpg" alt="British Council">
+                        <div class="cert-info">
+                            <h3>The English Classroom</h3>
+                            <p>Teach with The English Classroom</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert3.jpg" alt="The English Classroom">
+                        <div class="cert-info">
+                            <h3>Cambridge Assessment English</h3>
+                            <p>Developing speaking skills</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert4.jpg" alt="Macmillan Education">
+                        <div class="cert-info">
+                            <h3>British Council</h3>
+                            <p data-i18n="certMacmillan">Teaching pathways: How to teach speaking</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert5.jpg" alt="Богатый таргетолог">
+                        <div class="cert-info">
+                            <h3 data-i18n="certTargetTitle">On-Skills.ru</h3>
+                            <p data-i18n="certTargetDesc"> Онлайн-игра как метод вовлечения</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert6.jpg" alt="On-Skills.ru">
+                        <div class="cert-info">
+                            <h3>British Council</h3>
+                            <p data-i18n="certOnSkillsDesc">Effective Communities of Practice</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert7.jpg" alt="Certificate 7">
+                        <div class="cert-info">
+                            <h3>Macmillan Education</h3>
+                            <p>«Winter Fair Professional Development</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert8.png" alt="Bootstrap-5">
+                        <div class="cert-info">
+                            <h3>CanSheCode</h3>
+                            <p>Certificate in Bootstrap-5</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert9.png" alt="JavaScript">
+                        <div class="cert-info">
+                            <h3>CanSheCode</h3>
+                            <p>Certificate in JavaScript</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert10.png" alt="Fullstack Web Development">
+                        <div class="cert-info">
+                            <h3>CanSheCode</h3>
+                            <p>Fullstack Web Development (React, Redux, Node.js)</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert11.png" alt="GSAP, Figma">
+                        <div class="cert-info">
+                            <h3>CanSheCode</h3>
+                            <p>Certificate in GSAP, Figma</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert12.png" alt="HTML, CSS">
+                        <div class="cert-info">
+                            <h3>CanSheCode</h3>
+                            <p>Introduction to Web Development (HTML, CSS)</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <img src="images/cert13.png" alt="Certificate 13">
+                        <div class="cert-info">
+                            <h3>Богатый таргетолог</h3>
+                            <p>Курс по созданию и прогреву аккаунтов</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Футер -->
+        <footer class="portfolio-footer">
+            <p>© 2026 Елена Филатова</p>
+        </footer>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="certModal" class="modal" onclick="closeCertModal()">
+        <span class="close-btn" onclick="closeCertModal()">&times;</span>
+        <img class="modal-content" id="modalImg" alt="Увеличенный сертификат">
+    </div>
+
+</body>
+</html>

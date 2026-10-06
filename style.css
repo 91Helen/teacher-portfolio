@@ -1,0 +1,546 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background: #fdf2f4; /* Нежный розоватый фон страницы */
+    color: #334155;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.portfolio-card {
+    position: relative; /* ВАЖНО: фиксирует область для абсолютного позиционирования логотипа и кнопки языка */
+    width: 100%;
+    max-width: 850px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(219, 112, 147, 0.15); /* Мягкая розовая тень */
+    overflow: hidden;
+}
+
+/* Шапка */
+.profile-header {
+    position: relative; /* ВАЖНО: чтобы шапка тоже служила контейнером */
+    background: linear-gradient(135deg, #4a3b4c 0%, #2d2330 100%); /* Темный элегантный фон шапки */
+    color: #ffffff;
+    padding: 50px 20px 30px 20px; /* Увеличен верхний отступ, чтобы логотип не перекрывал текст */
+    text-align: center;
+    border-bottom: 4px solid #db7093; /* Розовая полоска */
+}
+
+/* Блок логотипа в шапке (слева) */
+.header-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+}
+
+/* Фиксируем аккуратный размер логотипа */
+.header-logo img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+}
+
+.brand-text {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.brand-white {
+    color: #ffffff;
+}
+
+.brand-accent {
+    color: #db7093; /* Фирменный розовый акцент */
+}
+
+.avatar-wrapper {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 15px auto;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(135deg, #db7093, #ffb6c1); /* Градиент рамки аватарки */
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-header h1 {
+    margin: 0 0 5px 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.profile-tagline {
+    font-size: 0.95rem;
+    color: #d1c4cb;
+    margin-bottom: 15px;
+}
+
+.profile-badge {
+    display: inline-block;
+    background: rgba(219, 112, 147, 0.15);
+    color: #ffb6c1;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(219, 112, 147, 0.3);
+}
+
+.badge-sub {
+    color: #f3e8eb;
+    font-size: 0.8rem;
+}
+
+/* Навигация (вкладки) */
+.nav-tabs {
+    display: flex;
+    background: #fff0f3;
+    border-bottom: 1px solid #f8d7da;
+    overflow-x: auto;
+}
+
+.nav-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 14px 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #8c6d78;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-btn:hover {
+    color: #db7093;
+    background: #ffe5ea;
+}
+
+.nav-btn.active {
+    color: #db7093;
+    background: #ffffff;
+    border-bottom: 3px solid #db7093;
+}
+
+/* Тело контента */
+.content-body {
+    padding: 35px;
+    min-height: 280px;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    color: #2d2330;
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+p {
+    line-height: 1.6;
+    color: #5c4b51;
+    font-size: 0.95rem;
+}
+
+/* Навыки сетка */
+.skills-grid, .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.skill-box, .cert-card {
+    background: #fff8f9;
+    border: 1px solid #f3d1d8;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.skill-box {
+    padding: 20px;
+}
+
+.skill-box:hover, .cert-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(219, 112, 147, 0.1);
+}
+
+.skill-box h3 {
+    margin-top: 0;
+    color: #db7093;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.skill-box ul {
+    padding-left: 18px;
+    margin: 0;
+    color: #5c4b51;
+    font-size: 0.9rem;
+}
+
+.skill-box li {
+    margin-bottom: 6px;
+}
+
+/* Карточки сертификатов */
+.cert-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-bottom: 1px solid #f3d1d8;
+    cursor: pointer;
+}
+
+.cert-info {
+    padding: 15px;
+}
+
+.cert-info h3 {
+    margin: 0 0 6px 0;
+    font-size: 1rem;
+    color: #2d2330;
+}
+
+.cert-info p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #8c6d78;
+    line-height: 1.4;
+}
+
+/* Таймлайн */
+.timeline {
+    border-left: 2px solid #db7093;
+    margin-left: 5px;
+    padding-left: 20px;
+}
+
+.timeline-item {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.timeline-date {
+    font-size: 0.8rem;
+    color: #db7093;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.timeline-item h3 {
+    margin: 4px 0 6px 0;
+    font-size: 1rem;
+    color: #2d2330;
+}
+
+.timeline-item p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Модальное окно для сертификатов */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(45, 35, 48, 0.85);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    object-fit: contain;
+    animation: zoomIn 0.25s ease;
+}
+
+.close-btn {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #db7093;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Блок кнопок в шапке */
+.header-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.cv-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #db7093;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(219, 112, 147, 0.3);
+}
+
+.cv-btn:hover {
+    background: #c75b80;
+    transform: translateY(-2px);
+}
+
+/* Иконки соцсетей в шапке */
+.header-socials {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #fff8f9;
+    border: 1px solid #f3d1d8;
+    color: #db7093;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.social-icon:hover {
+    background: #db7093;
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(219, 112, 147, 0.2);
+}
+
+/* Кнопка переключения языка */
+.lang-switch-wrapper {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+.lang-btn {
+    background: #ffffff;
+    color: #db7093;
+    border: 2px solid #db7093;
+    padding: 6px 14px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transition: background 0.2s, color 0.2s;
+}
+
+.lang-btn:hover {
+    background: #db7093;
+    color: #ffffff;
+}
+
+.portfolio-footer {
+    text-align: center;
+    padding: 20px;
+    color: #888888;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+/* Стили для Intro-заставки */
+.introLogo {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #371844 0%, #000 100%);
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.introLogoImg {
+    width: 140px;
+    height: auto;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
+}
+
+.introName {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: flex;
+    gap: 10px;
+}
+
+.introName .white {
+    color: #ffffff;
+}
+
+.introName .violet {
+    color: #db7093;
+}
+
+/* Стили для пузырьков (BubblesBackground) */
+.bubbles-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    pointer-events: none;
+    overflow: hidden;
+    mix-blend-mode: screen;
+    transform: translate(var(--mx, 0), var(--my, 0));
+    transition: transform 0.12s ease-out;
+
+    /* Вырезаем область вокруг вашего фото (аватара) */
+    /* Центр маски задается динамически через JS, либо можно настроить под центр экрана/шапки */
+    -webkit-mask-image: radial-gradient(
+        circle 110px at var(--avatar-x, 50%) var(--avatar-y, 220px),
+        transparent 0%,
+        transparent 70%,
+        black 100%
+    );
+    mask-image: radial-gradient(
+        circle 110px at var(--avatar-x, 50%) var(--avatar-y, 220px),
+        transparent 0%,
+        transparent 70%,
+        black 100%
+    );
+}
+
+.bubbles-bg span {
+    position: absolute;
+    left: var(--left);
+    bottom: -12%;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 30% 30%,
+        hsla(var(--hue), 95%, 85%, 0.95),
+        hsla(var(--hue), 85%, 60%, 0.55) 40%,
+        hsla(var(--hue), 90%, 55%, 0.18) 65%,
+        transparent 72%
+    );
+    box-shadow: 0 0 18px hsla(var(--hue), 100%, 70%, 0.45),
+                inset 0 0 10px hsla(var(--hue), 100%, 95%, 0.55);
+    filter: blur(0.2px);
+    will-change: transform, opacity;
+    animation: bubble-rise var(--duration) linear infinite;
+    animation-delay: var(--delay);
+}
+
+.bubbles-bg span::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 65% 35%, rgba(255, 255, 255, 0.6), transparent 35%),
+                radial-gradient(circle at 35% 70%, rgba(255, 255, 255, 0.25), transparent 40%);
+    mix-blend-mode: screen;
+}
+
+@keyframes bubble-rise {
+    0% {
+        transform: translate3d(calc(-10px * var(--depth)), 0, 0) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.9;
+    }
+    60% {
+        opacity: 0.95;
+        transform: translate3d(
+            calc(20px * var(--depth)),
+            calc(-60vh * (0.8 + var(--depth))),
+            0
+        ) scale(1.03);
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(
+            calc(-10px * var(--depth)),
+            calc(-120vh * (0.8 + var(--depth))),
+            0
+        ) scale(1.05);
+    }
+}
+
+@media (max-width: 576px) {
+    .bubbles-bg {
+        top: auto;
+        bottom: 0;
+        height: 30%;
+        -webkit-mask-image: linear-gradient(to top, transparent 0%, black 90%);
+        mask-image: linear-gradient(to top, transparent 0%, black 90%);
+    }
+}
