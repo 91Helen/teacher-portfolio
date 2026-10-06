@@ -69,7 +69,7 @@ const translations = {
         expRole2: "Frontend Developer — AL TECH LABS LTD",
         expDesc2: "Разработка коммерческих веб-приложений, проектирование интерфейсов и оптимизация клиентской части.",
         certsTitle: "Сертификаты и достижения",
-        cert1Desc: "74 балла (Английский: 54, Педагогика: 20)",
+        cert1Desc: "Национальный квал.тест",
         certMacmillan: "Участие в вебинаре «Winter Fair»",
         certTargetTitle: "Богатый таргетолог",
         certTargetDesc: "Курс по созданию и прогреву аккаунтов",
