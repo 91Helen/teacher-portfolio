@@ -15,26 +15,26 @@ body {
 }
 
 .portfolio-card {
-    position: relative; /* ВАЖНО: фиксирует область для абсолютного позиционирования логотипа и кнопки языка */
+    position: relative;
     width: 100%;
     max-width: 850px;
     background: #ffffff;
     border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(219, 112, 147, 0.15); /* Мягкая розовая тень */
+    box-shadow: 0 20px 40px rgba(219, 112, 147, 0.15);
     overflow: hidden;
+    transition: opacity 0.6s ease;
 }
 
-/* Шапка */
+/* ---------- Шапка ---------- */
 .profile-header {
-    position: relative; /* ВАЖНО: чтобы шапка тоже служила контейнером */
-    background: linear-gradient(135deg, #4a3b4c 0%, #2d2330 100%); /* Темный элегантный фон шапки */
+    position: relative;
+    background: linear-gradient(135deg, #4a3b4c 0%, #2d2330 100%);
     color: #ffffff;
-    padding: 50px 20px 30px 20px; /* Увеличен верхний отступ, чтобы логотип не перекрывал текст */
+    padding: 50px 20px 30px 20px;
     text-align: center;
-    border-bottom: 4px solid #db7093; /* Розовая полоска */
+    border-bottom: 4px solid #db7093;
 }
 
-/* Блок логотипа в шапке (слева) */
 .header-logo {
     position: absolute;
     top: 20px;
@@ -45,25 +45,10 @@ body {
     z-index: 10;
 }
 
-/* Фиксируем аккуратный размер логотипа */
 .header-logo img {
     width: 56px;
     height: 56px;
     object-fit: contain;
-}
-
-.brand-text {
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
-.brand-white {
-    color: #ffffff;
-}
-
-.brand-accent {
-    color: #db7093; /* Фирменный розовый акцент */
 }
 
 .avatar-wrapper {
@@ -72,7 +57,7 @@ body {
     margin: 0 auto 15px auto;
     border-radius: 50%;
     padding: 3px;
-    background: linear-gradient(135deg, #db7093, #ffb6c1); /* Градиент рамки аватарки */
+    background: linear-gradient(135deg, #db7093, #ffb6c1);
 }
 
 .profile-avatar {
@@ -94,22 +79,7 @@ body {
     margin-bottom: 15px;
 }
 
-.profile-badge {
-    display: inline-block;
-    background: rgba(219, 112, 147, 0.15);
-    color: #ffb6c1;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    border: 1px solid rgba(219, 112, 147, 0.3);
-}
-
-.badge-sub {
-    color: #f3e8eb;
-    font-size: 0.8rem;
-}
-
-/* Навигация (вкладки) */
+/* ---------- Навигация ---------- */
 .nav-tabs {
     display: flex;
     background: #fff0f3;
@@ -141,7 +111,7 @@ body {
     border-bottom: 3px solid #db7093;
 }
 
-/* Тело контента */
+/* ---------- Контент ---------- */
 .content-body {
     padding: 35px;
     min-height: 280px;
@@ -174,7 +144,7 @@ p {
     font-size: 0.95rem;
 }
 
-/* Навыки сетка */
+/* ---------- Навыки и сертификаты ---------- */
 .skills-grid, .certs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -203,6 +173,9 @@ p {
     color: #db7093;
     font-size: 1rem;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .skill-box ul {
@@ -216,7 +189,6 @@ p {
     margin-bottom: 6px;
 }
 
-/* Карточки сертификатов */
 .cert-card img {
     width: 100%;
     height: 160px;
@@ -242,7 +214,7 @@ p {
     line-height: 1.4;
 }
 
-/* Таймлайн */
+/* ---------- Таймлайн ---------- */
 .timeline {
     border-left: 2px solid #db7093;
     margin-left: 5px;
@@ -272,7 +244,7 @@ p {
     font-size: 0.9rem;
 }
 
-/* Модальное окно для сертификатов */
+/* ---------- Модальное окно ---------- */
 .modal {
     display: none;
     position: fixed;
@@ -317,7 +289,7 @@ p {
     to { transform: scale(1); opacity: 1; }
 }
 
-/* Блок кнопок в шапке */
+/* ---------- Кнопки и соцсети в шапке ---------- */
 .header-actions {
     display: flex;
     gap: 10px;
@@ -346,7 +318,6 @@ p {
     transform: translateY(-2px);
 }
 
-/* Иконки соцсетей в шапке */
 .header-socials {
     display: flex;
     justify-content: center;
@@ -376,7 +347,7 @@ p {
     box-shadow: 0 5px 12px rgba(219, 112, 147, 0.2);
 }
 
-/* Кнопка переключения языка */
+/* ---------- Переключатель языка ---------- */
 .lang-switch-wrapper {
     position: absolute;
     top: 20px;
@@ -410,7 +381,18 @@ p {
     width: 100%;
 }
 
-/* Стили для Intro-заставки */
+/* ---------- Состояние загрузки (пока идёт интро) ---------- */
+body.is-loading {
+    overflow: hidden;
+}
+
+body.is-loading .portfolio-card,
+body.is-loading .bubbles-bg {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* ---------- Интро-заставка ---------- */
 .introLogo {
     position: fixed;
     inset: 0;
@@ -420,15 +402,17 @@ p {
     justify-content: center;
     align-items: center;
     background: radial-gradient(circle at center, #371844 0%, #000 100%);
-    opacity: 0;
-    pointer-events: none;
+    opacity: 1;
+    pointer-events: all;
     overflow: hidden;
 }
 
 .introLogoImg {
-    width: 140px;
+    width: 140px;               /* размер логотипа */
+    max-width: 40vw;
     height: auto;
     margin-bottom: 20px;
+    opacity: 0;                 /* до старта GSAP */
     filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
 }
 
@@ -440,6 +424,7 @@ p {
     text-transform: uppercase;
     display: flex;
     gap: 10px;
+    opacity: 0;                 /* до старта GSAP */
 }
 
 .introName .white {
@@ -450,7 +435,14 @@ p {
     color: #db7093;
 }
 
-/* Стили для пузырьков (BubblesBackground) */
+@media (max-width: 576px) {
+    .introName {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+}
+
+/* ---------- Пузырьки ---------- */
 .bubbles-bg {
     position: fixed;
     inset: 0;
@@ -461,8 +453,7 @@ p {
     transform: translate(var(--mx, 0), var(--my, 0));
     transition: transform 0.12s ease-out;
 
-    /* Вырезаем область вокруг вашего фото (аватара) */
-    /* Центр маски задается динамически через JS, либо можно настроить под центр экрана/шапки */
+    /* Вырез вокруг аватара: центр задаётся из JS */
     -webkit-mask-image: radial-gradient(
         circle 110px at var(--avatar-x, 50%) var(--avatar-y, 220px),
         transparent 0%,
