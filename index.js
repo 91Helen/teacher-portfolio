@@ -1,9 +1,7 @@
+// ---------- Вкладки ----------
 function switchTab(event, tabId) {
-    const panes = document.querySelectorAll('.tab-pane');
-    panes.forEach(pane => pane.classList.remove('active'));
-
-    const buttons = document.querySelectorAll('.nav-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
 
     const targetTab = document.getElementById(tabId);
     if (targetTab) {
@@ -12,34 +10,17 @@ function switchTab(event, tabId) {
     event.currentTarget.classList.add('active');
 }
 
-// Открытие сертификата в модальном окне
-document.addEventListener('DOMContentLoaded', () => {
-    const certImages = document.querySelectorAll('.cert-card img');
-    const modal = document.getElementById('certModal');
-    const modalImg = document.getElementById('modalImg');
-
-    certImages.forEach(img => {
-        img.addEventListener('click', () => {
-            modal.style.display = 'flex';
-            modalImg.src = img.src;
-        });
-    });
-});
-
+// ---------- Модальное окно сертификатов ----------
 function closeCertModal() {
     const modal = document.getElementById('certModal');
-    modal.style.display = 'none';
+    if (modal) modal.style.display = 'none';
 }
 
-// Закрытие при прокрутке колесика мыши
-window.addEventListener('wheel', () => {
-    const modal = document.getElementById('certModal');
-    if (modal.style.display === 'flex') {
-        closeCertModal();
-    }
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeCertModal();
 });
 
-// Словарь перевода языков
+// ---------- Переводы ----------
 const translations = {
     ru: {
         pageTitle: "Елена Филатова — Преподаватель & Frontend-разработчик",
@@ -51,13 +32,13 @@ const translations = {
         navExperience: "Опыт",
         navCerts: "Сертификаты",
         aboutTitle: "Обо мне",
-        aboutText1: " Преподаватель английского языка с высшим лингвистическим образованием (Казахский национальный педагогический университет имени Абая, факультет иностранных языков) и дополнительной технической базой. Выпускница Канадской школы программирования CanSheCode, что позволяет мне уверенно ориентироваться в цифровых технологиях, эффективно использовать онлайн/офлайн-инструменты и проводить интерактивные уроки. ",
+        aboutText1: "Преподаватель английского языка с высшим лингвистическим образованием (Казахский национальный педагогический университет имени Абая, факультет иностранных языков) и дополнительной технической базой. Выпускница Канадской школы программирования CanSheCode, что позволяет мне уверенно ориентироваться в цифровых технологиях, эффективно использовать онлайн/офлайн-инструменты и проводить интерактивные уроки.",
         skillsTitle: "Навыки и стек",
-        skillTeachingTitle: "🗣 Преподавание",
+        skillTeachingTitle: "Педагогическая деятельность",
         st1: "Обучаю детей и взрослых",
         st2: "Английский для IT-сферы, работа со школьниками и малышами, разговорный, грамматика",
         st3: "Геймификация и интерактив",
-        skillDevTitle: "💻 Разработка",
+        skillDevTitle: "IT и программирование",
         sd1: "JavaScript (Vanilla), React",
         sd2: "HTML5, CSS3, FSD, RTK Query",
         sd3: "Git, GitHub, VS Code, Netlify",
@@ -70,10 +51,8 @@ const translations = {
         expDesc2: "Разработка коммерческих веб-приложений, проектирование интерфейсов и оптимизация клиентской части.",
         certsTitle: "Сертификаты и достижения",
         cert1Desc: "Национальный квал.тест",
-        certMacmillan: "Участие в вебинаре «Winter Fair»",
         certTargetTitle: "Богатый таргетолог",
-        certTargetDesc: "Курс по созданию и прогреву аккаунтов",
-        certOnSkillsDesc: "Онлайн-игра как метод вовлечения"
+        certTargetDesc: "Курс по созданию и прогреву аккаунтов"
     },
     en: {
         pageTitle: "Elena Filatova — English Teacher & Frontend Developer",
@@ -85,13 +64,13 @@ const translations = {
         navExperience: "Experience",
         navCerts: "Certificates",
         aboutTitle: "About Me",
-        aboutText1: "Certified specialist with a Bachelor's degree in Linguistics (Abai Kazakh National Pedagogical University, Foreign Languages Department) and an additional technical background. Successfully combining traditional English language teaching with modern web technologies to create interactive and engaging lessons for children and adults",
+        aboutText1: "Certified specialist with a Bachelor's degree in Linguistics (Abai Kazakh National Pedagogical University, Foreign Languages Department) and an additional technical background. Successfully combining traditional English language teaching with modern web technologies to create interactive and engaging lessons for children and adults.",
         skillsTitle: "Skills & Tech Stack",
-        skillTeachingTitle: "🗣 Teaching",
+        skillTeachingTitle: "Teaching",
         st1: "Methodology for kids & adults",
         st2: "IT English, conversational English, grammar, teaching kids and school students.",
         st3: "Gamification & interactive tools",
-        skillDevTitle: "💻 Development",
+        skillDevTitle: "IT & Development",
         sd1: "JavaScript (Vanilla), React",
         sd2: "HTML5, CSS3, FSD, RTK Query",
         sd3: "Git, GitHub, VS Code, Netlify",
@@ -104,10 +83,8 @@ const translations = {
         expDesc2: "Development of commercial web applications, interface design, and client-side optimization.",
         certsTitle: "Certificates & Achievements",
         cert1Desc: "74 scores (English: 54, Pedagogy: 20)",
-        certMacmillan: "Participation in the «Winter Fair» webinar",
         certTargetTitle: "Targeting Expert",
-        certTargetDesc: "Course on account creation and promotion",
-        certOnSkillsDesc: "Online game as an engagement method"
+        certTargetDesc: "Course on account creation and promotion"
     }
 };
 
@@ -128,53 +105,76 @@ function toggleLanguage() {
     document.documentElement.setAttribute('lang', currentLang);
 }
 
-// Главная инициализация при загрузке DOM
+// ---------- Инициализация ----------
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Логика интро-анимации (GSAP)
+
+    // 1. Открытие сертификата в модальном окне
+    const modal = document.getElementById('certModal');
+    const modalImg = document.getElementById('modalImg');
+
+    document.querySelectorAll('.cert-card img').forEach(img => {
+        img.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            modalImg.src = img.src;
+        });
+    });
+
+    // 2. Интро-анимация (GSAP)
     const bgRef = document.getElementById("introLogo");
     const logoRef = document.getElementById("introLogoImg");
     const nameRef = document.getElementById("introName");
 
-    if (bgRef && logoRef && nameRef) {
+    let introFinished = false;
+    const revealPortfolio = () => {
+        document.body.classList.remove("is-loading");
+    };
+    const finishIntro = () => {
+        if (introFinished) return;
+        introFinished = true;
+        revealPortfolio();
+        if (bgRef) bgRef.style.display = "none";
+    };
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!reduceMotion && bgRef && logoRef && nameRef && typeof gsap !== "undefined") {
         const tl = gsap.timeline({
             defaults: { ease: "power3.out" },
-            onComplete: () => {
-                bgRef.style.display = "none";
-            },
+            onComplete: finishIntro,
         });
 
-        tl.to(bgRef, { opacity: 1, duration: 0.2 })
-          .fromTo(logoRef, { scale: 0.3, opacity: 0, rotation: -15 }, { scale: 1, opacity: 1, rotation: 0, duration: 1.0 })
+        tl.fromTo(logoRef, { scale: 0.3, opacity: 0, rotation: -15 }, { scale: 1, opacity: 1, rotation: 0, duration: 1.0 })
           .fromTo(nameRef, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.6")
-          .to([logoRef, nameRef], { opacity: 0, scale: 1.1, duration: 0.6, delay: 0.1, ease: "power2.inOut" })
-          .to(bgRef, { opacity: 0, duration: 0.6, ease: "sine.inOut" }, "-=0.4");
+          .to([logoRef, nameRef], { opacity: 0, scale: 1.1, duration: 0.6, delay: 0.3, ease: "power2.inOut" })
+          // портфолио проявляется под интро, пока оно растворяется
+          .add(revealPortfolio, "-=0.2")
+          .to(bgRef, { opacity: 0, duration: 0.6, ease: "sine.inOut" });
+
+        // страховка, если что-то пошло не так
+        setTimeout(finishIntro, 6000);
+    } else {
+        // GSAP не загрузился или включено «уменьшение движения»
+        finishIntro();
     }
 
-    // 2. Логика генерации пузырьков и зоны выреза вокруг аватара
+    // 3. Пузырьки и вырез вокруг аватара
     const bubblesContainer = document.getElementById("bubblesBg");
     const avatar = document.querySelector(".profile-avatar");
 
-    if (bubblesContainer) {
+    if (bubblesContainer && !reduceMotion) {
         const count = 20;
         const rand = (a, b) => a + Math.random() * (b - a);
 
         for (let i = 0; i < count; i++) {
             const span = document.createElement("span");
-            const size = rand(30, 80);
-            const left = rand(0, 100);
-            const duration = rand(18, 36);
-            const delay = -rand(0, 10);
-            const hue = rand(260, 320);
-            const depth = rand(0.05, 0.2);
-            const opacity = rand(0.3, 0.6);
 
-            span.style.setProperty("--size", `${size}px`);
-            span.style.setProperty("--left", `${left}%`);
-            span.style.setProperty("--duration", `${duration}s`);
-            span.style.setProperty("--delay", `${delay}s`);
-            span.style.setProperty("--hue", hue);
-            span.style.setProperty("--depth", depth);
-            span.style.setProperty("--opacity", opacity);
+            span.style.setProperty("--size", `${rand(30, 80)}px`);
+            span.style.setProperty("--left", `${rand(0, 100)}%`);
+            span.style.setProperty("--duration", `${rand(18, 36)}s`);
+            span.style.setProperty("--delay", `${-rand(0, 10)}s`);
+            span.style.setProperty("--hue", rand(260, 320));
+            span.style.setProperty("--depth", rand(0.05, 0.2));
+            span.style.setProperty("--opacity", rand(0.3, 0.6));
 
             bubblesContainer.appendChild(span);
         }
@@ -182,10 +182,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const updateAvatarMask = () => {
             if (avatar) {
                 const rect = avatar.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                bubblesContainer.style.setProperty("--avatar-x", `${centerX}px`);
-                bubblesContainer.style.setProperty("--avatar-y", `${centerY}px`);
+                bubblesContainer.style.setProperty("--avatar-x", `${rect.left + rect.width / 2}px`);
+                bubblesContainer.style.setProperty("--avatar-y", `${rect.top + rect.height / 2}px`);
             }
         };
 
@@ -193,15 +191,11 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("resize", updateAvatarMask);
         window.addEventListener("scroll", updateAvatarMask);
 
-        const onMove = (e) => {
+        window.addEventListener("mousemove", (e) => {
             const w = window.innerWidth;
             const h = window.innerHeight;
-            const mx = ((e.clientX - w / 2) / w) * 50;
-            const my = ((e.clientY - h / 2) / h) * 50;
-            bubblesContainer.style.setProperty("--mx", `${mx}px`);
-            bubblesContainer.style.setProperty("--my", `${my}px`);
-        };
-
-        window.addEventListener("mousemove", onMove);
+            bubblesContainer.style.setProperty("--mx", `${((e.clientX - w / 2) / w) * 50}px`);
+            bubblesContainer.style.setProperty("--my", `${((e.clientY - h / 2) / h) * 50}px`);
+        });
     }
 });
